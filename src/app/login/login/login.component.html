@@ -1,9 +1,14 @@
 <form class="form" role="form" method="POST" [formGroup]="loginForm" autocomplete="off" (ngSubmit)="onSubmit()">
-    <label for="email">E-mail</label>
-    <input type="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" autocomplete="off" required="">
-    
+    <label for="username">E-mail</label>
+    <input type="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" autocomplete="off" required="">
+    <div *ngIf="submitted && f.username.errors && f.username.errors.required" class="invalid-feedback invalid-feedback__username">You forgot the e-mail</div>
+
+
     <label for="password">Password</label>
     <input type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" autocomplete="off" required="">
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback invalid-feedback_password">
+        <div *ngIf="f.password.errors.required">You forgot the password</div>
+    </div>
 
     <button type="submit">Enter</button>
 
