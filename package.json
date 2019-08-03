@@ -1,6 +1,10 @@
 {
   "name": "ng7-tdd-admin-example",
   "version": "0.0.0",
+  "author": {
+    "name": "rafaelboschini",
+    "email": "rafaelboschini@gmail.com"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
