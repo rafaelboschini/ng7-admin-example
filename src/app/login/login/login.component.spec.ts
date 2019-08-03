@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -8,6 +9,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
       declarations: [ LoginComponent ]
     })
     .compileComponents();
@@ -19,7 +21,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create login component', () => {
     expect(component).toBeTruthy();
   });
 
@@ -31,11 +33,10 @@ describe('LoginComponent', () => {
     /** testing form and fields */
     expect(compiled.querySelector('input[type="email"]')).toBeTruthy();
     expect(compiled.querySelector('input[type="password"]')).toBeTruthy();
-    expect(compiled.querySelector('label[for="username"]')).toBeTruthy();
-    
+
     /** Testing labels */
-    expect(compiled.querySelector('label[for="username"]').textContent).toBe('E-mail');
-    expect(compiled.querySelector('label[for="password"]').textContent).toBe('Password');
+    expect(compiled.querySelector('label[for="email"]').innerText).toBe('E-mail');
+    expect(compiled.querySelector('label[for="password"]').innerText).toBe('Password');
 
     /** testing if have submit button */
     expect(compiled.querySelector('button[type="submit"]')).toBeTruthy();
