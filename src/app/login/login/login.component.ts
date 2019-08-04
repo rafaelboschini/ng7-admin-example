@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/_services/authentication.service'
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
-  message = "msg default";
+  message = "";
   
   constructor(private formBuilder: FormBuilder, 
     private router: Router,
