@@ -5,6 +5,8 @@ import { AppRoutingModule } from './_core/app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { HomeModule } from './home/home.module';
+import { HttpClientModule } from '@angular/common/http';
+import { fakeBackendProvider } from './_helpers/fake-backend';
 
 @NgModule({
   declarations: [
@@ -12,13 +14,14 @@ import { HomeModule } from './home/home.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
     LoginModule,
     HomeModule
   ],
-  providers: [],
+  providers: [fakeBackendProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
