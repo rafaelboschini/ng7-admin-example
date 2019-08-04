@@ -11,6 +11,7 @@ import { AuthenticationService } from 'src/app/_services/authentication.service'
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  message = "msg default";
   
   constructor(private formBuilder: FormBuilder, 
     private router: Router,
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/home']);
         }).catch(error => {
             this.submitted = false;
-            console.error('error', error);
+            this.message = error.error.message;
         });
   }  
 
