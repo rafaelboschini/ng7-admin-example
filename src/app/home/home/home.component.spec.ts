@@ -22,4 +22,16 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create h1 tag for title', () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1')).toBeTruthy();
+  });
+
+  it('should create div with some welcome or instructions text', () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.home-instructions')).toBeTruthy();
+  });
 });
