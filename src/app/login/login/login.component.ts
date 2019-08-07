@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
         remember: ['']
       });
 
-      this.f.username.setValue("johncandy@holywood.com");
-      this.f.password.setValue("sugar123");
+      //this.f.username.setValue("johncandy@holywood.com");
+      //this.f.password.setValue("sugar123");
   }
 
   get f() { return this.loginForm.controls; }
