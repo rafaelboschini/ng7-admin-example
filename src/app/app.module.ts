@@ -5,8 +5,10 @@ import { AppRoutingModule } from './_core/app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { HomeModule } from './home/home.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { fakeBackendProvider } from './_helpers/fake-backend';
+import { environment } from '../environments/environment';
+import { HttpRequestInterceptor } from './_helpers/http-interceptor';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,12 @@ import { fakeBackendProvider } from './_helpers/fake-backend';
     LoginModule,
     HomeModule
   ],
-  providers: [fakeBackendProvider],
+  providers: [
+    (environment.production ?
+                { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true } : 
+                fakeBackendProvider
+    ),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
