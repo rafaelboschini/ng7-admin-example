@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { delay } from 'q';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { User } from 'src/app/_models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -49,28 +49,41 @@ export class LoginComponent implements OnInit {
     
     this.loginBoxClass = "processing spin";
 
-    await delay(5000); /** Remove this for production */
+    await this.delay(5000); /** Remove this for production */
 
     this.authenticationService.login(this.f.username.value, this.f.password.value)
         .then(async data => {
 
-            await delay(5000); /** Remove this for production */
+            await this.delay(5000); /** Remove this for production */
 
             this.currentUser = data['username'];
             this.loginBoxClass = "box-container--invert";
             this.awaitingAvatar = data.picture;
             this.awaitingText = data.firstName;
 
-            await delay(5000); /** Delay for user can see the interface animation */
+            await this.delay(5000); /** Delay for user can see the interface animation */
             this.router.navigate(['/home']);
-        }).catch(error => {
+        }).catch(async error => {
             this.submitted = false;
             this.message = error.error.message;
             this.loginBoxClass = "";
+
+            /** Clear message of wrong pass */
+            await this.delay(5000).then(()=>{
+              this.message = "";
+            });
+
         });
   }  
 
   onFocus = (state: string) => this.avatarState = state;
   onFocusOut = () => this.avatarState = "idle";
 
+  private delay(ms: number): Promise<boolean> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true);
+      }, ms);
+    });
+  }
 }
