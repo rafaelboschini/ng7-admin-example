@@ -1,0 +1,74 @@
+@keyframes FADEIN {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes FADEOUT {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes AVATAR-IDLE {
+    0%   {
+        transform: translateX(0px);
+    }
+    45%  {
+        transform: translateX(-45px);
+    }
+    75%  {
+        transform: translateX(-90px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes ROTATION-3D {
+    0% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+  }
+
+  @keyframes ERROR-FIELD-SHOW {
+    0% {
+        top: 10px;
+    }
+    100% {
+        top: -10px;
+    }
+  }
+
+  @keyframes ERROR-FIELD-HIDE {
+    0% {
+        top: -10px;
+    }
+    100% {
+        top: 10px;
+    }
+  }
+
+  @keyframes ROTATION-Y {
+    0% {
+      transform: rotateY(0deg);
+    }
+    50% {
+      transform: rotateY(180deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
+  @keyframes STOPSPIN {
+    0% {
+      transform: rotateY(150deg);
+    }
+    100% {
+      transform: rotateY(180deg);
+    }
+  }

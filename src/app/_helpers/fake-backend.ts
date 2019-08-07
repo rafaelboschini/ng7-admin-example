@@ -46,7 +46,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     firstName: 'John Franklin Candy',
                     document: '404876877',
                     profile: 0,
-                    token: ''
+                    token: '',
+                    picture: 'assets/user-pictures/johncandy.jpg',
                 });
 
                 users.push({
@@ -56,7 +57,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     firstName: 'Frederick Alan Moranis',
                     document: '404876879',
                     profile: 1,
-                    token: ''
+                    token: '',
+                    picture: 'assets/user-pictures/rickmorranis.jpg',
                 });
 
                 users.push({
@@ -66,7 +68,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     firstName: 'Bill Murray',
                     cpf: '404876878',
                     profile: 1,
-                    token: ''
+                    token: '',
+                    picture: 'assets/user-pictures/bill.jpg',
                 });
 
                 localStorage.setItem('users', JSON.stringify(users));

@@ -1,16 +1,78 @@
-<form class="form" role="form" method="POST" [formGroup]="loginForm" autocomplete="off" (ngSubmit)="onSubmit()">
-    <label for="username">E-mail</label>
-    <input type="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" autocomplete="off" required="">
-    <div *ngIf="submitted && f.username.errors && f.username.errors.required" class="invalid-feedback invalid-feedback__username">You forgot the e-mail</div>
+<div class="login">
+    <div class="login-background"></div>
+
+    <div class="box-container {{loginBoxClass}} processing spin">
+        <div class="invalid-feedback_msg" *ngIf="message!=''">{{message}}</div>
+        
+        <div class="box-container__panel box-container__panel--front">
+            <form role="form" method="POST" [formGroup]="loginForm" autocomplete="off" (ngSubmit)="onSubmit()" id="frmLogin" name="frmLogin">
+                <div class="logo"> <span>b</span> Drakkar Admin {{submitted}}</div>
+                <div class="form">
+                    <div class="form-item">
+                        <div class="avatar {{avatarState}}">
+                            
+                            <div class="waiting">
+                                <img src="assets/images/004-man.svg"/>
+                                <img src="assets/images/008-woman.svg"/>
+                                <img src="assets/images/007-student.svg"/>
+                            </div>
+                            
+                            <div class="email">
+                                <img src="assets/images/022-email.svg"/>
+                            </div>
+                            
+                            <div class="pwd">
+                                <img src="assets/images/023-key.svg"/>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="form-item">
+                        <div class="form-item__field">
+                            <input type="email" class="text-input" placeholder="you@email.com" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" (focus)="onFocus('state-email')" (focusout)="onFocusOut()" autocomplete="off" required="">    
+                            <div class="remeber">
+                                <input type="checkbox" formControlName="remember" name="remember" id="remember" value="1"/> <label for="remember">remember me</label>
+                            </div>
+                        </div>
+                        <!-- submitted && f.username.errors && f.username.errors.required -->
+                        <div class="invalid-feedback invalid-feedback__username" [ngClass]="(submitted && f.username.errors && f.username.errors.required) ? 'invalid-feedback--show' : 'invalid-feedback--hide'">You forgot the e-mail</div>
+                    </div>
+
+                    <div class="form-item">
+                        <div class="form-item__field">
+                            <input type="password" class="text-input" placeholder="P4ssw0rd" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" (focus)="onFocus('state-pwd')" (focusout)="onFocusOut()" autocomplete="off" required="">
+                        </div>
+                        <div [ngClass]="(submitted && f.password.errors && f.password.errors.required) ? 'invalid-feedback--show' : 'invalid-feedback--hide'" class="invalid-feedback invalid-feedback_password">
+                            You forgot the password
+                        </div>
 
 
-    <label for="password">Password</label>
-    <input type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" autocomplete="off" required="">
-    <div *ngIf="submitted && f.password.errors" class="invalid-feedback invalid-feedback_password">
-        <div *ngIf="f.password.errors.required">You forgot the password</div>
+                    </div>
+
+                    <div class="form-item">
+                        <button type="submit">i</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="box-container__panel box-container__panel--backface">
+            <div class="row">
+                <div class="avatar">
+                    <img src="{{awaitingAvatar}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="result-login">{{awaitingText}}</div>
+                <span class="result-redirect" *ngIf="awaitingText != 'waiting...'">redirecting you now, please wait</span>
+            </div>
+        </div>
     </div>
 
-    <div class="invalid-feedback_msg" *ngIf="message!=''">{{message}}</div>
-    <button type="submit">Enter</button>
-
-</form>
+    <div class="footer">
+        <div class="footer-item">©2019 rafaelboschini</div>
+        <div class="footer-item">f</div>
+        <div class="footer-item">d</div>
+        <div class="footer-item">e</div>
+    </div>
+</div>

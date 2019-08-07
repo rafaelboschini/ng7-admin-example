@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import './theme/theme-variables';
+@import './theme/typography';
+@import './theme/effects';
+
+body, html {
+    height: 100%;
+    margin: 0 auto;
+}
+
+body {
+    font-family: 'Arial';
+    font-size: 18px;
+    background-color: #213153;
+    text-rendering: optimizeLegibility ;
+}

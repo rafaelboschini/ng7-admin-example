@@ -1,0 +1,361 @@
+@import '../../../theme/theme-variables';
+
+$background-image: '/assets/images/login-background.jpg';
+
+.login {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    animation: FADEIN 5s forwards;
+    perspective: 600px;
+
+    .box-container {
+        display: flex;
+        flex-direction: column;
+        transition: transform 1s;
+        transform-style: preserve-3d;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        top: 0px;
+        box-shadow: 1px 4px 4px -1px rgba(0, 0, 0, 0.43);
+
+        &--invert {
+            transform: rotateY(180deg);
+            animation: STOPSPIN .5s;
+
+            .row {
+                .avatar {
+                    background-color: #bf9b76;
+
+                    img {
+                        width: 40px;
+                    }
+                }
+            }
+        }
+
+        &.processing {
+            box-shadow: 1px 19px 12px -1px rgba(0, 0, 0, 0.23);
+            top: -5px;
+            transition: all 1s;
+        }
+
+        &.spin {
+            animation: ROTATION-Y 3s infinite; 
+            animation-delay: 1.2s;      
+        }
+
+        &__panel {
+            color: $primary-color;
+            padding: 25px;
+            transition: all 2s;
+            
+
+            &--front {
+                background-image: url($background-image);
+                background-size: cover;
+            }
+            
+            &--backface {
+                transform: rotateY(180deg);
+                width: 91%;
+                height: 77%;
+                position: absolute;
+                pointer-events: none;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+
+                .row{
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    flex-direction: column;
+
+                    .result-login{
+                        font-size: 50px;
+                    }
+
+                    .result-redirect{
+                        font-size: 15px;
+                        color: $highlight;
+                    }
+
+                    .avatar{
+                        width: 80px;
+                        height: 80px;
+                        line-height: 80px;
+                        margin-right: 30px;
+                        
+                        img {
+                            width: 80px;
+                        }
+                    }
+                }
+            }
+
+            .form {
+                display: flex;
+                flex-direction: row;
+
+                &-item {
+                    flex-direction: column;
+                    display: flex;
+                    position: relative;
+                    padding: 10px;
+                    z-index: 1;
+
+                    &__field {
+                        height: 28px;
+                        background-color: #fff;
+                        border-radius: 05px;
+                        border: 0px;
+                        box-shadow: -1px 3px 7px -2px rgba(0,0,0,0.13);
+                        z-index: 3;
+                    }
+
+                    .invalid-feedback{
+                        padding: 3px 10px 4px 10px;
+                        background-color: #c53e3e;
+                        font-size: 11px;
+                        border-radius: 5px 5px 0px 0px;
+                        top: 10px;
+                        left: 12px;                   
+                        position: absolute;
+                        z-index: 2;
+
+                        &--show{
+                            animation: ERROR-FIELD-SHOW .8s forwards;
+                        }
+
+                        &--hide {
+                            animation: ERROR-FIELD-HIDE .8s forwards;                            
+                        }
+                    }
+                }
+            }
+
+            .logo {
+                backface-visibility: hidden;
+                text-align: center;
+                padding-bottom: 30px;
+
+                span{
+                    font-family: $font-icon;
+                    display: block;
+                    font-size: 50px;
+                    line-height: 55px;
+                }
+            }
+
+            .remeber{
+                position: absolute;
+                font-size: 12px;
+                margin-top: 10px;
+                z-index: 1;
+
+                input[type="checkbox"] {
+                    display: none;
+
+                    &:checked ~ label {
+                        &::after{
+                            height: 13px;
+                            width: 13px;
+                        }
+                    }
+                }
+
+                label {
+                    text-indent: 24px;
+                    position: relative;
+                    display: block;
+                    cursor: pointer;
+                    z-index: 1;
+                    &::before{
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        width: 12px;
+                        height: 12px;
+                        border:solid 1px #fff;
+                        background-color: transparent;
+                        transition: all .5s;
+                    }
+                        
+                    &::after{
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        width: 0px;
+                        height: 0px;
+                        top: 0px;
+                        
+                        transition: all .5s;
+                        background-color: #fff;
+                    }
+                }
+            }
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                box-shadow: -1px 3px 7px -2px rgba(0,0,0,0.63);
+                border: solid 2px #fff;
+                overflow: hidden;
+                z-index: 2;
+
+                &.idle {
+                    .waiting {
+                        width: max-content;
+
+                        img {
+                            z-index: 1;
+                            width: 44px;
+                            display: inline-block;
+                            animation: AVATAR-IDLE 7s infinite;
+                        }
+                    }
+
+                    .email{
+                        display: none;
+                    }
+
+                    .pwd {
+                        display: none;
+                    }
+                }
+
+                &.state-email {
+                    
+                    .waiting {
+                        display: none;
+
+                        img {
+                            animation: none;
+                        }
+                    }
+
+                    .email{
+                        display: block;
+
+                        img{
+                            animation: ROTATION-3D 1s forwards;
+                        }
+                    }
+
+                    .pwd {
+                        display: none;
+                    }
+                }
+
+                &.state-pwd {
+                    animation-name: ROTATION-COIN;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: linear;
+                    animation-duration: 3.5s;
+                    transform: rotateY(0deg);
+                    transform-style: preserve-3d;
+
+                    .waiting {
+                        display: none;
+
+                        img {
+                            animation: none;
+                        }
+                    }
+
+                    .email{
+                        display: none;
+                    }
+
+                    .pwd {
+                        display: block;
+
+                        img{
+                            animation: ROTATION-3D 1.5s forwards;
+                        }
+                    }
+                }
+            }
+
+            button[type=submit] {
+                background-color: $action-button;
+                font-family: $font-icon;
+                font-size: 15px;
+                color: #fff;
+                border: 0px;
+                height: 35px;
+                width: 35px;
+                border-radius: 05px;
+                box-shadow: -1px 3px 7px -2px rgba(0,0,0,0.13);
+            }
+
+            .text-input{
+                line-height: 28px;
+                background-color: transparent;
+                border: 0px;
+                text-indent: 8px;
+                font-size: 12px;
+                font-weight: bold;
+                
+                &::placeholder{
+                    color:  $placeholder-color;
+                }
+                
+            }
+
+        }
+
+    }
+
+    .footer {
+        display: inherit;
+        justify-content: center;
+        position: absolute;
+        width: 100%;
+        bottom: 15px;
+        color: #fff;
+        font-size: 16px;   
+        animation: FADEIN 4s forwards;  
+        
+        &-item {
+            font-family: $font-icon;
+
+            &:first-child{
+                margin-right: 50px;
+                font-family: Arial;
+            }
+
+            &:not(:first-child),
+            &:not(:last-child){
+                margin-right: 10px;
+            }
+
+            img {
+                width: 15px;
+                height: 15px;
+            }
+        }
+    }
+
+    &-background{
+        position: absolute;
+        display: block;
+        width: inherit;
+        height: inherit;
+        background-image: url($background-image);
+        background-size: cover;
+        filter: blur(8px);
+        z-index: -1;
+    }
+
+}
+
