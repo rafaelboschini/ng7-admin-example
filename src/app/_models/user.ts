@@ -8,5 +8,5 @@ export class User {
     document: string;
     profile: UserProfile;
     token: string;
-    picture:string;
+    picture: string;
 }

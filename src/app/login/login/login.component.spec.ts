@@ -97,16 +97,16 @@ describe('LoginComponent', () => {
   it('testing password invalid validation', async () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    
+
     component.loginForm.controls.username.setValue('leslie.nielsen@holywood.com');
     component.loginForm.controls.password.setValue('3313');
-    
+
     el = fixture.debugElement.query(By.css('button')).nativeElement;
     el.click();
     await fixture.whenStable();
 
     fixture.detectChanges();
-    
+
     const passwordMsgdiv = compiled.querySelector('.invalid-feedback_msg');
     expect(passwordMsgdiv).toBeTruthy();
     expect(passwordMsgdiv.textContent).toEqual('Username or password is incorrect');

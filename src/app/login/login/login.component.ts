@@ -13,17 +13,15 @@ import { Observable } from 'rxjs';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
-  loginBoxClass = "";
-  message = "";
-  avatarState = "idle";
-  awaitingAvatar = "assets/images/hourglass.svg";
-  awaitingText = "waiting...";
-  remember: number = 0;
+  loginBoxClass = '';
+  message = '';
+  avatarState = 'idle';
+  awaitingAvatar = 'assets/images/hourglass.svg';
+  awaitingText = 'waiting...';
+  remember: 0;
   currentUser: User['username'];
 
-  constructor(private formBuilder: FormBuilder, 
-    private router: Router,
-    private authenticationService: AuthenticationService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private authenticationService: AuthenticationService) {
       if (this.authenticationService.currentUserValue) {
         this.router.navigate(['/']);
       }
@@ -36,8 +34,8 @@ export class LoginComponent implements OnInit {
         remember: ['']
       });
 
-      //this.f.username.setValue("johncandy@holywood.com");
-      //this.f.password.setValue("sugar123");
+      // this.f.username.setValue("johncandy@holywood.com");
+      // this.f.password.setValue("sugar123");
   }
 
   get f() { return this.loginForm.controls; }
@@ -46,8 +44,8 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if (this.loginForm.invalid) { return; }
-    
-    this.loginBoxClass = "processing spin";
+
+    this.loginBoxClass = 'processing spin';
 
     await this.delay(5000); /** Remove this for production */
 
@@ -56,8 +54,8 @@ export class LoginComponent implements OnInit {
 
             await this.delay(5000); /** Remove this for production */
 
-            this.currentUser = data['username'];
-            this.loginBoxClass = "box-container--invert";
+            this.currentUser = data.username;
+            this.loginBoxClass = 'box-container--invert';
             this.awaitingAvatar = data.picture;
             this.awaitingText = data.firstName;
 
@@ -66,18 +64,18 @@ export class LoginComponent implements OnInit {
         }).catch(async error => {
             this.submitted = false;
             this.message = error.error.message;
-            this.loginBoxClass = "";
+            this.loginBoxClass = '';
 
             /** Clear message of wrong pass */
-            await this.delay(5000).then(()=>{
-              this.message = "";
+            await this.delay(5000).then( () => {
+              this.message = '';
             });
 
         });
-  }  
+  }
 
   onFocus = (state: string) => this.avatarState = state;
-  onFocusOut = () => this.avatarState = "idle";
+  onFocusOut = () => this.avatarState = 'idle';
 
   private delay(ms: number): Promise<boolean> {
     return new Promise(resolve => {

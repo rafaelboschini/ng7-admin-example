@@ -24,9 +24,7 @@ import { HttpRequestInterceptor } from './_helpers/http-interceptor';
     HomeModule
   ],
   providers: [
-    (environment.production ?
-                { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true } : 
-                fakeBackendProvider
+    (environment.production ? { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true } : fakeBackendProvider
     ),
   ],
   bootstrap: [AppComponent]
