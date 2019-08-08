@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { fakeBackendProvider } from './_helpers/fake-backend';
 import { environment } from '../environments/environment';
 import { HttpRequestInterceptor } from './_helpers/http-interceptor';
+import { LayoutsModule } from 'src/app/_layouts/layouts.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HttpRequestInterceptor } from './_helpers/http-interceptor';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
+    LayoutsModule,
     LoginModule,
     HomeModule
   ],
