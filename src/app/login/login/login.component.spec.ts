@@ -1,10 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { fakeBackendProvider } from 'src/app/_helpers/fake-backend';
+import { delay } from 'rxjs/operators';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -40,12 +41,8 @@ describe('LoginComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
 
     /** testing form and fields */
-    expect(compiled.querySelector('input[type="username"]')).toBeTruthy();
+    expect(compiled.querySelector('input[type="email"]')).toBeTruthy();
     expect(compiled.querySelector('input[type="password"]')).toBeTruthy();
-
-    /** Testing labels */
-    expect(compiled.querySelector('label[for="username"]').innerText).toBe('E-mail');
-    expect(compiled.querySelector('label[for="password"]').innerText).toBe('Password');
 
     /** testing if have submit button */
     expect(compiled.querySelector('button[type="submit"]')).toBeTruthy();
@@ -85,11 +82,11 @@ describe('LoginComponent', () => {
   it('should be form valid', async () => {
     fixture.detectChanges();
 
-    component.loginForm.controls.username.setValue('bill@holywood.com');
+    component.loginForm.controls['username'].setValue('bill@holywood.com');
     component.loginForm.controls.password.setValue('bil123');
 
     expect(component.loginForm.valid).toBeTruthy();
-
+    
     expect(fixture.debugElement.query(By.css('.invalid-feedback--email'))).toBeNull();
     expect(fixture.debugElement.query(By.css('.invalid-feedback--password'))).toBeNull();
   });

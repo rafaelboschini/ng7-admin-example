@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrivateLayoutComponent } from './private-layout.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PrivateLayoutComponent', () => {
   let component: PrivateLayoutComponent;
@@ -8,7 +9,10 @@ describe('PrivateLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrivateLayoutComponent ]
+      declarations: [ PrivateLayoutComponent ],
+      imports: [
+        RouterTestingModule
+      ],
     })
     .compileComponents();
   }));
