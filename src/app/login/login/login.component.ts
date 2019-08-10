@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
             this.awaitingText = data.firstName;
 
             await this.delay(5000); /** Delay for user can see the interface animation */
-            this.router.navigate(['/home']);
+            this.router.navigate(['/']);
         }).catch(async error => {
             this.submitted = false;
             this.message = error.error.message;
