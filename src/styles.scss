@@ -1,4 +1,5 @@
 @import './theme/theme-variables';
+@import './theme/reset';
 @import './theme/typography';
 @import './theme/effects';
 
@@ -8,8 +9,8 @@ body, html {
 }
 
 body {
-    font-family: 'Arial';
+    font-family: $font-default;
     font-size: 18px;
-    background-color: #213153;
+    background-color: $body-background;
     text-rendering: optimizeLegibility ;
 }
