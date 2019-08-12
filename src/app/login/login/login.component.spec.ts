@@ -12,7 +12,7 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let el: HTMLElement;
-  var originalTimeout;
+  let originalTimeout;
 
   beforeEach(async(() => {
     originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -36,7 +36,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   }));
 
-  afterEach(function() {
+  afterEach(() => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
@@ -91,11 +91,11 @@ describe('LoginComponent', () => {
   it('should be form valid', async () => {
     fixture.detectChanges();
 
-    component.loginForm.controls['username'].setValue('bill@holywood.com');
+    component.loginForm.controls.username.setValue('bill@holywood.com');
     component.loginForm.controls.password.setValue('bil123');
 
     expect(component.loginForm.valid).toBeTruthy();
-    
+
     expect(fixture.debugElement.query(By.css('.invalid-feedback--email'))).toBeNull();
     expect(fixture.debugElement.query(By.css('.invalid-feedback--password'))).toBeNull();
   });
@@ -112,7 +112,7 @@ describe('LoginComponent', () => {
 
     await fixture.whenStable();
     fixture.detectChanges();
-    
+
     const passwordMsgdiv = compiled.querySelector('.invalid-feedback_msg');
     expect(passwordMsgdiv).toBeTruthy();
     expect(passwordMsgdiv.textContent).toEqual('Username or password is incorrect');

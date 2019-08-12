@@ -30,15 +30,11 @@ describe('PrivateLayoutComponent', () => {
 
   it('should create brand and navbar', () => {
     fixture.detectChanges();
-  
+
     const compiled = fixture.debugElement.nativeElement;
 
     expect(compiled.querySelector('.layout-container .brand')).toBeTruthy();
     expect(compiled.querySelector('.layout-container .nav')).toBeTruthy();
-
-    const usernameErrdiv = compiled.querySelector('.layout-container .nav');
-    //console.log('usernameErrdiv',usernameErrdiv);
-
   });
 
 
