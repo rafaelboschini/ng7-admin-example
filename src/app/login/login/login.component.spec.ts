@@ -2,33 +2,42 @@ import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { fakeBackendProvider } from 'src/app/_helpers/fake-backend';
 import { delay } from 'rxjs/operators';
+import { LayoutsModule } from 'src/app/_layouts/layouts.module';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let el: HTMLElement;
+  var originalTimeout;
 
   beforeEach(async(() => {
+    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 5000;
+
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
+        FormsModule,
         ReactiveFormsModule,
-        RouterTestingModule
+        RouterTestingModule,
+        LayoutsModule
       ],
       providers: [fakeBackendProvider],
       declarations: [ LoginComponent ]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  }));
+
+  afterEach(function() {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 
   it('should create login component', () => {
@@ -100,10 +109,10 @@ describe('LoginComponent', () => {
 
     el = fixture.debugElement.query(By.css('button')).nativeElement;
     el.click();
+
     await fixture.whenStable();
-
     fixture.detectChanges();
-
+    
     const passwordMsgdiv = compiled.querySelector('.invalid-feedback_msg');
     expect(passwordMsgdiv).toBeTruthy();
     expect(passwordMsgdiv.textContent).toEqual('Username or password is incorrect');

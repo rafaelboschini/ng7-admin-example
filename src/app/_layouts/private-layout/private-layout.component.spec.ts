@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { PrivateLayoutComponent } from './private-layout.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -11,6 +11,7 @@ describe('PrivateLayoutComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ PrivateLayoutComponent ],
       imports: [
+        HttpClientModule,
         RouterTestingModule
       ],
     })
@@ -26,4 +27,19 @@ describe('PrivateLayoutComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create brand and navbar', () => {
+    fixture.detectChanges();
+  
+    const compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('.layout-container .brand')).toBeTruthy();
+    expect(compiled.querySelector('.layout-container .nav')).toBeTruthy();
+
+    const usernameErrdiv = compiled.querySelector('.layout-container .nav');
+    //console.log('usernameErrdiv',usernameErrdiv);
+
+  });
+
+
 });

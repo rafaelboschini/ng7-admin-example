@@ -65,5 +65,9 @@
         background-color: $content-background;
         color: $content-color;
         height: calc(100vh - 60px);
+
+        &-wrapper{
+            padding:20px;
+        }
     }
 }

@@ -35,7 +35,6 @@
                                 <input type="checkbox" formControlName="remember" name="remember" id="remember" value="1"/> <label for="remember">remember me</label>
                             </div>
                         </div>
-                        <!-- submitted && f.username.errors && f.username.errors.required -->
                         <div class="invalid-feedback invalid-feedback__username" [ngClass]="(submitted && f.username.errors && f.username.errors.required) ? 'invalid-feedback--show' : 'invalid-feedback--hide'">You forgot the e-mail</div>
                     </div>
 
@@ -46,8 +45,6 @@
                         <div [ngClass]="(submitted && f.password.errors && f.password.errors.required) ? 'invalid-feedback--show' : 'invalid-feedback--hide'" class="invalid-feedback invalid-feedback_password">
                             You forgot the password
                         </div>
-
-
                     </div>
 
                     <div class="form-item">

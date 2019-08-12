@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
         remember: ['']
       });
 
-      // this.f.username.setValue("johncandy@holywood.com");
-      // this.f.password.setValue("sugar123");
+      this.f.username.setValue("johncandy@holywood.com");
+      this.f.password.setValue("sugar123");
   }
 
   get f() { return this.loginForm.controls; }
@@ -47,19 +47,16 @@ export class LoginComponent implements OnInit {
 
     this.loginBoxClass = 'processing spin';
 
-    await this.delay(5000); /** Remove this for production */
+    await this.delay(2000); /** minimal delay to see the beautiful animation */
 
     this.authenticationService.login(this.f.username.value, this.f.password.value)
         .then(async data => {
-
-            await this.delay(5000); /** Remove this for production */
-
             this.currentUser = data.username;
             this.loginBoxClass = 'box-container--invert';
             this.awaitingAvatar = data.picture;
             this.awaitingText = data.firstName;
 
-            await this.delay(5000); /** Delay for user can see the interface animation */
+            await this.delay(3000); /** Delay for user can see the interface animation */
             this.router.navigate(['/']);
         }).catch(async error => {
             this.submitted = false;
@@ -67,10 +64,9 @@ export class LoginComponent implements OnInit {
             this.loginBoxClass = '';
 
             /** Clear message of wrong pass */
-            await this.delay(5000).then( () => {
+            /*this.delay(5000).then( () => {
               this.message = '';
-            });
-
+            });*/
         });
   }
 
