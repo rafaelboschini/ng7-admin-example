@@ -10,6 +10,7 @@ import { fakeBackendProvider } from './_helpers/fake-backend';
 import { environment } from '../environments/environment';
 import { HttpRequestInterceptor } from './_helpers/http-interceptor';
 import { LayoutsModule } from 'src/app/_layouts/layouts.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LayoutsModule } from 'src/app/_layouts/layouts.module';
     AppRoutingModule,
     LayoutsModule,
     LoginModule,
-    HomeModule
+    HomeModule,
+    UserModule,
   ],
   providers: [
     (environment.production ? { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true } : fakeBackendProvider
