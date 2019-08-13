@@ -20,7 +20,7 @@ const routes: Routes = [
     component: PrivateLayoutComponent,
     children: [
       { path: '', loadChildren: () => HomeModule, canActivate: [AuthGuard] },
-      { path: '', loadChildren: () => UserModule, canActivate: [AuthGuard] }
+      { path: 'user', loadChildren: () => UserModule, canActivate: [AuthGuard] }
     ]
   },
 ];

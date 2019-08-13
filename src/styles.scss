@@ -14,3 +14,8 @@ body {
     background-color: $body-background;
     text-rendering: optimizeLegibility ;
 }
+
+/** For icons */
+i {
+    font-family: $font-icon;
+}
