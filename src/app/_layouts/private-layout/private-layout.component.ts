@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
-import { User } from 'src/app/_models';
 import { Subscription } from 'rxjs';
+
+import { AuthenticationService } from 'src/app/_services/auth/authentication.service';
+import { User } from 'src/app/_models';
 
 @Component({
   selector: 'app-private-layout',
