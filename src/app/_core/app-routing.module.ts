@@ -5,6 +5,7 @@ import { LoginModule } from 'src/app/login/login.module';
 import { HomeModule } from 'src/app/home/home.module';
 import { PublicLayoutComponent } from 'src/app/_layouts/public-layout/public-layout.component';
 import { PrivateLayoutComponent } from 'src/app/_layouts/private-layout/private-layout.component';
+import { UserModule } from 'src/app/user/user.module';
 
 const routes: Routes = [
   {
@@ -18,9 +19,10 @@ const routes: Routes = [
     path: '',
     component: PrivateLayoutComponent,
     children: [
-      { path: '', loadChildren: () => HomeModule, canActivate: [AuthGuard] }
+      { path: '', loadChildren: () => HomeModule, canActivate: [AuthGuard] },
+      { path: '', loadChildren: () => UserModule, canActivate: [AuthGuard] }
     ]
-  }
+  },
 ];
 
 @NgModule({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-public-layout',
-  templateUrl: './public-layout.component.html',
+  template: `<router-outlet></router-outlet>`,
   styleUrls: ['./public-layout.component.scss']
 })
 export class PublicLayoutComponent implements OnInit {
