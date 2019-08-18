@@ -11,6 +11,8 @@ import { User } from 'src/app/_models';
 })
 export class UserListComponent implements OnInit {
   users: User[];
+  searchTerm = '';
+  favorites: number[] = [];
 
   constructor(private router: Router, private userService: UserService, private authService: AuthenticationService) { }
 
@@ -22,8 +24,32 @@ export class UserListComponent implements OnInit {
     /** Get all users registered in application */
     await this.userService.getAll().subscribe(data => {
       this.users = data as User[];
-      console.log('users', this.users);
+      console.log('uesres', this.users);
     });
   }
 
+  get userData(){
+    if(!this.users) return [];
+
+    if(this.searchTerm==='' || this.searchTerm == undefined) {
+      return this.users;
+    }
+
+    return this.users.filter( item => {
+      return item.firstName.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1 ||
+              item.username.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+    });
+  }
+ 
+  addFavorites(id: number) {
+    if(!this.favorites.includes(id)){
+      this.favorites.push(id);
+    } else {
+      this.favorites = this.favorites.filter(data=> data != id);
+    }
+  }
+
+  isFavorite(id: number){
+    return this.favorites.includes(id);
+  }
 }

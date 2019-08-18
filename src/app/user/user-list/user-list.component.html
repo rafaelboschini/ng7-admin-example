@@ -10,7 +10,7 @@
     <div class="header-item">
       <div class="search-container">
         <div class="search__button"><i>s</i></div>
-        <input type="text" placeholder="Search Here">        
+        <input type="text" placeholder="Search Here" [(ngModel)]="searchTerm">        
       </div>
     </div>
 
@@ -21,22 +21,31 @@
     <div class="list">
 
       <div class="header">
-        <div></div>
-        <div>name</div>
-        <div>e-mail</div>
-        <div>document</div>
-        <div></div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-3">name</div>
+        <div class="col-xs-3">e-mail</div>
+        <div class="col-xs-3 text-center">document</div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-1"></div>
       </div>
 
       <div class="body">
-        <div class="body-row">
-            <div>
+        <div class="body-row" *ngFor="let user of userData">
+            <div class="text-center col-xs-1">
               <input type="checkbox"/>
             </div>
-            <div>xxxxx</div>
-            <div>xxxx</div>
-            <div>xxxxx</div>
-            <div><i>l</i></div>
+            <div class="text-left col-xs-3">{{user.firstName}}</div>
+            <div class="text-left col-xs-3">{{user.username}}</div>
+            <div class="text-center col-xs-3">{{user.document}}</div>
+            <div class="text-center col-xs-1">
+              <a (click)="addFavorites(user.id)">              
+                <i *ngIf="isFavorite(user.id) else favoriteFull">u</i>
+                <ng-template #favoriteFull>
+                  <i>t</i>
+                </ng-template>
+              </a>
+            </div>
+            <div class="text-center col-xs-1"><i>l</i></div>
         </div>
       </div>
 

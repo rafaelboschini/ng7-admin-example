@@ -84,9 +84,14 @@
                     display: flex;
                     flex-direction: row;
 
+                    &:nth-child(odd){
+                        background-color: #ececec;
+                    }
+                    
                     > div{
                         flex: 1 1 auto;
                     }
+
                 }
             }
         }

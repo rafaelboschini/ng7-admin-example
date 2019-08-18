@@ -2,6 +2,8 @@
 @import './theme/reset';
 @import './theme/typography';
 @import './theme/effects';
+@import './theme//helpers/grid';
+@import './theme//helpers/alignment';
 
 body, html {
     height: 100%;

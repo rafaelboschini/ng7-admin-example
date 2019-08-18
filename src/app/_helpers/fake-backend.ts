@@ -13,7 +13,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = req;
-
+        
         /** wrap in delayed observable to simulate server api call */
         return of(null)
             .pipe(mergeMap(handleRoute))
@@ -25,6 +25,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             switch (true) {
                 case url.endsWith('/users/authenticate') && method === 'POST':
                     return authenticate();
+                case url.endsWith('/users') && method === 'GET':
+                    return getUsers();
+                    
                 default:
                     return next.handle(req);
             }
@@ -82,6 +85,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function authenticate() {
+            console.log('chamou authenticate');
             const { username, password } = body;
 
             if (users.length === 0) {
