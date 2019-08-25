@@ -18,14 +18,16 @@
   <!-- End of the header -->
 
   <div class="body-wrapper">
+    <div class="list-summary text-right">{{userData.length}} {{userData.length > 1 ? 'records' : 'record' }} found</div>
     <div class="list">
-
       <div class="header">
         <div class="col-xs-1"></div>
         <div class="col-xs-3">name</div>
         <div class="col-xs-3">e-mail</div>
         <div class="col-xs-3 text-center">document</div>
-        <div class="col-xs-1"></div>
+        <div class="col-xs-1 text-center">
+          <span *ngIf="favorites.length>0">({{favorites.length}})</span>
+        </div>
         <div class="col-xs-1"></div>
       </div>
 
@@ -36,7 +38,7 @@
             </div>
             <div class="text-left col-xs-3">{{user.firstName}}</div>
             <div class="text-left col-xs-3">{{user.username}}</div>
-            <div class="text-center col-xs-3">{{user.document}}</div>
+            <div class="text-center col-xs-3">{{user.document != "" ? user.document : " - "}}</div>
             <div class="text-center col-xs-1 favorite">
               <a (click)="addFavorites(user.id)">              
                 <i *ngIf="isFavorite(user.id) else favoriteFull">u</i>
@@ -50,6 +52,9 @@
                 <i>l</i>
               </div>
             </div>
+        </div>
+        <div class="body-row" *ngIf="userData.length == 0">
+            <div class="text-center col-xs-12">No record found</div>
         </div>
       </div>
 

@@ -60,7 +60,10 @@ export class UserListComponent implements OnInit {
   }
 
   confirmDeleteModal() {
-    console.log('deleteIdUser',this.deleteIdUser);
+    this.users = this.users.filter( item => {
+      return item.id != this.deleteIdUser;
+    });
+
     this.showModal = false;
   }
 }
