@@ -13,6 +13,8 @@ export class UserListComponent implements OnInit {
   users: User[];
   searchTerm = '';
   favorites: number[] = [];
+  showModal = false;
+  deleteIdUser: number;
 
   constructor(private router: Router, private userService: UserService, private authService: AuthenticationService) { }
 
@@ -24,7 +26,6 @@ export class UserListComponent implements OnInit {
     /** Get all users registered in application */
     await this.userService.getAll().subscribe(data => {
       this.users = data as User[];
-      console.log('uesres', this.users);
     });
   }
 
@@ -51,5 +52,15 @@ export class UserListComponent implements OnInit {
 
   isFavorite(id: number){
     return this.favorites.includes(id);
+  }
+
+  showDeleteModal(id: number) {
+    this.showModal = true;
+    this.deleteIdUser = id;
+  }
+
+  confirmDeleteModal() {
+    console.log('deleteIdUser',this.deleteIdUser);
+    this.showModal = false;
   }
 }

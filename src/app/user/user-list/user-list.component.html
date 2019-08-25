@@ -37,7 +37,7 @@
             <div class="text-left col-xs-3">{{user.firstName}}</div>
             <div class="text-left col-xs-3">{{user.username}}</div>
             <div class="text-center col-xs-3">{{user.document}}</div>
-            <div class="text-center col-xs-1">
+            <div class="text-center col-xs-1 favorite">
               <a (click)="addFavorites(user.id)">              
                 <i *ngIf="isFavorite(user.id) else favoriteFull">u</i>
                 <ng-template #favoriteFull>
@@ -45,11 +45,35 @@
                 </ng-template>
               </a>
             </div>
-            <div class="text-center col-xs-1"><i>l</i></div>
+            <div class="text-center col-xs-1 content-middle">
+              <div class="trash-action" (click)="showDeleteModal(user.id)">
+                <i>l</i>
+              </div>
+            </div>
         </div>
       </div>
 
     </div>
   </div>
 
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-background"></div>
+    <div class="modal-box">
+      <div class="modal-box__icon">
+        <i>l</i>
+      </div>
+      <div class="modal-box__title">
+          Do you really want to delete this user?
+      </div>
+      <div class="modal-box__choose">
+        <div>
+          <a class="success" (click)="confirmDeleteModal()">SIM</a>
+        </div>
+        <div>
+          <a class="error" (click)="showModal=false">NÃO</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </div>

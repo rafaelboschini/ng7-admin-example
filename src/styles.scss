@@ -1,9 +1,12 @@
 @import './theme/theme-variables';
-@import './theme/reset';
-@import './theme/typography';
+@import './theme/_base/_reset';
+@import './theme/_base/_typography';
 @import './theme/effects';
-@import './theme//helpers/grid';
-@import './theme//helpers/alignment';
+@import './theme/helpers/grid';
+@import './theme/helpers/alignment';
+
+/** Components */
+@import './theme/components/modal';
 
 body, html {
     height: 100%;

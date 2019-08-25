@@ -88,10 +88,32 @@
                         background-color: #ececec;
                     }
                     
-                    > div{
+                    > div {
                         flex: 1 1 auto;
                     }
 
+                    .favorite {
+                        color: $highlight;
+                        cursor: pointer;
+                    }
+
+                    .trash-action {
+                        background-color: $error-color;
+                        border-radius: 5px;
+                        border: 0;
+                        width: 30px;
+                        height: 30px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        i {    
+                            font-size: 18px;
+                            color: #fff;
+
+                        }
+                        
+                    }
                 }
             }
         }
