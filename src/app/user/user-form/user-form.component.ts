@@ -14,7 +14,7 @@ import { User, UserProfile } from 'src/app/_models';
 export class UserFormComponent implements OnInit {
   userForm: FormGroup;
   submitted = false;
-  selectedUser: User = new User;
+  selectedUser: User = new User();
 
   profiles: UserProfile[] = [
     {id: 0, name: 'Admin'},
@@ -41,13 +41,9 @@ export class UserFormComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    console.log("userForm invalid", this.userForm.invalid);
-
     if (this.userForm.invalid) {
       return;
     }
-
-    console.log("Chegou");
 
     if (!this.selectedUser.id) {
       /** Register new user */
@@ -77,5 +73,4 @@ export class UserFormComponent implements OnInit {
       onlySelf: true
     });
   }
-  
 }

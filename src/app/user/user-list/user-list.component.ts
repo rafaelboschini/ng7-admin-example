@@ -29,10 +29,12 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  get userData(){
-    if(!this.users) return [];
+  get userData() {
+    if (!this.users) {
+      return [];
+    }
 
-    if(this.searchTerm==='' || this.searchTerm == undefined) {
+    if (this.searchTerm === '' || this.searchTerm === undefined) {
       return this.users;
     }
 
@@ -41,16 +43,16 @@ export class UserListComponent implements OnInit {
               item.username.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
     });
   }
- 
+
   addFavorites(id: number) {
-    if(!this.favorites.includes(id)){
+    if (!this.favorites.includes(id)) {
       this.favorites.push(id);
     } else {
-      this.favorites = this.favorites.filter(data=> data != id);
+      this.favorites = this.favorites.filter(data => data !== id);
     }
   }
 
-  isFavorite(id: number){
+  isFavorite(id: number) {
     return this.favorites.includes(id);
   }
 
@@ -61,7 +63,7 @@ export class UserListComponent implements OnInit {
 
   confirmDeleteModal() {
     this.users = this.users.filter( item => {
-      return item.id != this.deleteIdUser;
+      return item.id !== this.deleteIdUser;
     });
 
     this.showModal = false;

@@ -13,7 +13,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = req;
-        
+
         /** wrap in delayed observable to simulate server api call */
         return of(null)
             .pipe(mergeMap(handleRoute))
@@ -27,10 +27,37 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return authenticate();
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
-                    
+                case url.endsWith('/users/register') && method === 'POST':
+                    return register();
+                case url.indexOf('users/update') > 0 && method === 'PUT':
+                    return updateUser();
                 default:
                     return next.handle(req);
             }
+        }
+
+        function updateUser() {
+            const user = body;
+
+            users = users.filter(x => x.id !== user.id); /** Remove old register */
+            users.push(user); /** Add new fake user yeah yeah */
+            localStorage.setItem('users', JSON.stringify(users));
+
+            return ok();
+        }
+
+        function register() {
+            const user = body;
+
+            if (users.find(x => x.username === user.username)) {
+                return error('Username "' + user.username + '" is already taken');
+            }
+
+            user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            return ok();
         }
 
         /** Route function */
