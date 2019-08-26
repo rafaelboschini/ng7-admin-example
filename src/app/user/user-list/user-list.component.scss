@@ -16,6 +16,10 @@
         color: #fff;
         background-color: $nav-background;
         text-decoration: none;
+
+        i {
+            font-family: $font-icon;
+        }
     }
 
     .header {

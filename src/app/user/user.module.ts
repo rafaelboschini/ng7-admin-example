@@ -11,10 +11,10 @@ import { UserFormComponent } from './user-form/user-form.component';
   declarations: [UserListComponent, UserFormComponent],
   imports: [
     CommonModule,
+    RouterModule,
     UserRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
+    ReactiveFormsModule,    
   ]
 })
 export class UserModule { }

@@ -39,7 +39,7 @@ export class UserListComponent implements OnInit {
     }
 
     return this.users.filter( item => {
-      return item.firstName.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1 ||
+      return item.firstname.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1 ||
               item.username.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
     });
   }

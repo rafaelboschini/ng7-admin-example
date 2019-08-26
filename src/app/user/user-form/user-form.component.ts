@@ -32,10 +32,20 @@ export class UserFormComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       username: ['', Validators.required],
+      document: ['', Validators.required],
       profile: ['', Validators.required],
-      password: ['', [Validators.required]],
-      cpf: ['', Validators.required]
+      password: ['', [Validators.required]]
     });
+
+    this.route.paramMap.subscribe(params => {
+      /** Verify if is a new user */
+      if (params.get('id') && !params.get('id').match(/new|register/gi) ) {
+          this.userService.getById(parseInt(params.get('id'), 10)).subscribe( user => {
+            this.selectedUser = user;  /** Get user data */
+          });
+      }
+    });
+
   }
 
   onSubmit() {
@@ -49,12 +59,12 @@ export class UserFormComponent implements OnInit {
       /** Register new user */
       this.userService.register(this.userForm.value)
               .pipe(first())
-              .subscribe(this.successHandler, this.errHandler);
+              .subscribe(() => this.successHandler(), this.errHandler);
     } else {
       /** Editing existing user */
       this.userService.update(this.selectedUser)
               .pipe(first())
-              .subscribe(this.successHandler, this.errHandler);
+              .subscribe(() => this.successHandler(), this.errHandler);
     }
   }
 

@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
             this.currentUser = data.username;
             this.loginBoxClass = 'box-container--invert';
             this.awaitingAvatar = data.picture;
-            this.awaitingText = data.firstName;
+            this.awaitingText = data.firstname;
 
             await this.delay(3000); /** Delay for user can see the interface animation */
             this.router.navigate(['/']);

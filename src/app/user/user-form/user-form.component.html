@@ -15,11 +15,11 @@
 
         <!-- CPF field -->
         <div class="form-group">
-            <label for="cpf">Document</label>
-            <input type="email" formControlName="cpf" [(ngModel)]="selectedUser.cpf" class="" [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" required>
+            <label for="document">Document</label>
+            <input type="email" formControlName="document" [(ngModel)]="selectedUser.document" class="" [ngClass]="{ 'is-invalid': submitted && f.document.errors }" required>
             
-            <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
-                <div *ngIf="f.cpf.errors.required">Document field is required</div>
+            <div *ngIf="submitted && f.document.errors" class="invalid-feedback">
+                <div *ngIf="f.document.errors.required">Document field is required</div>
             </div>
         </div>
 
@@ -52,6 +52,10 @@
                 <option value="" disabled>Choose user profile</option>
                 <option *ngFor="let profile of profiles" [ngValue]="profile.id">{{profile.name}}</option>
               </select>
+            </div>
+
+            <div *ngIf="submitted && f.profile.errors" class="invalid-feedback">
+                <div *ngIf="f.profile.errors.required">Profile field is required</div>
             </div>
         </div>
 

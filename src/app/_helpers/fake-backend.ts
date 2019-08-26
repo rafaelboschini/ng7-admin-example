@@ -31,9 +31,28 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return register();
                 case url.indexOf('users/update') > 0 && method === 'PUT':
                     return updateUser();
+                case url.match(/\/users\/\d+$/) && method === 'GET':
+                    return getUserById();
+                case url.match(/\/users\/\d+$/) && method === 'DELETE':
+                    return deleteUser();
                 default:
                     return next.handle(req);
             }
+        }
+
+        function deleteUser() {
+            //if (!isLoggedIn()) { return unauthorized(); }
+
+            users = users.filter(x => x.id !== idFromUrl());
+            localStorage.setItem('users', JSON.stringify(users));
+            return ok();
+        }
+
+        function getUserById() {
+            //if (!isLoggedIn()) { return unauthorized(); }
+
+            const userReturn = users.find((user: { id: number; }) => user.id === idFromUrl());
+            return ok(userReturn);
         }
 
         function updateUser() {
@@ -74,7 +93,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     id: rndNumber(),
                     username : 'johncandy@holywood.com',
                     password: 'sugar123',
-                    firstName: 'John Franklin Candy',
+                    firstname: 'John Franklin Candy',
                     document: '404876877',
                     profile: 0,
                     token: '',
@@ -85,7 +104,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     id: rndNumber(),
                     username : 'moranis@holywood.com',
                     password: 'moranis123',
-                    firstName: 'Frederick Alan Moranis',
+                    firstname: 'Frederick Alan Moranis',
                     document: '404876879',
                     profile: 1,
                     token: '',
@@ -96,7 +115,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     id: rndNumber(),
                     username : 'bill@holywood.com',
                     password: 'bil123',
-                    firstName: 'Bill Murray',
+                    firstname: 'Bill Murray',
                     cpf: '404876878',
                     profile: 1,
                     token: '',
@@ -137,6 +156,19 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function error(message) {
             return throwError({ error: { message } });
+        }
+
+        function unauthorized() {
+            return throwError({ status: 401, error: { message: 'Unauthorised' } });
+        }
+
+        function isLoggedIn() {
+            return headers.get('Authorization') === 'Bearer fake-jwt-token';
+        }
+
+        function idFromUrl() {
+            const urlParts = url.split('/');
+            return parseInt(urlParts[urlParts.length - 1], 10);
         }
 
     }
