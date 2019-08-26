@@ -1,3 +1,71 @@
-<p>
-  user-form works!
-</p>
+<div class="userform-container">
+
+  <div class="body-wrapper">
+    <form role="form" method="POST" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+        <!-- First name field -->
+        <div class="form-group">
+            <label for="firstname">Name</label>
+            <input type="text" formControlName="firstname" [(ngModel)]="selectedUser.firstname" class="" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" required>
+            
+            <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                <div *ngIf="f.firstname.errors.required">Name field is required</div>
+            </div>
+        </div>
+
+        <!-- CPF field -->
+        <div class="form-group">
+            <label for="cpf">Document</label>
+            <input type="email" formControlName="cpf" [(ngModel)]="selectedUser.cpf" class="" [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" required>
+            
+            <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
+                <div *ngIf="f.cpf.errors.required">Document field is required</div>
+            </div>
+        </div>
+
+        <!-- Username/Email field -->
+        <div class="form-group">
+            <label for="username">E-Mail</label>
+            <input type="username" formControlName="username" [(ngModel)]="selectedUser.username" class="" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" required>
+            
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">E-mail field is required</div>
+            </div>
+        </div>
+
+        <!-- Password field -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password"  [(ngModel)]="selectedUser.password" required class="" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">A senha deve conter 6 digitos</div>
+            </div>
+        </div>
+
+        <!-- Profile field -->
+        <div class="form-group">
+            <label for="profile">Access Profile</label>
+            <div>
+              <select class="custom-select" (change)="changeProfileValue($event)" formControlName="profile">
+                <option value="" disabled>Choose user profile</option>
+                <option *ngFor="let profile of profiles" [ngValue]="profile.id">{{profile.name}}</option>
+              </select>
+            </div>
+        </div>
+
+        <!-- Action button -->
+        <div class="row">
+            <div class="col">
+                <a [routerLink]="['/user']" class="btn btn-link">Cancel</a>
+            </div>
+            <div class="col text-right">
+                <button class="btn register-action">Register</button>
+            </div>
+        </div>
+
+    </form>
+  </div>
+
+</div>
