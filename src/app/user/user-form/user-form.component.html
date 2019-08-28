@@ -9,7 +9,7 @@
             <input type="text" formControlName="firstname" [(ngModel)]="selectedUser.firstname" class="" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" required>
             
             <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
-                <div *ngIf="f.firstname.errors.required">Name field is required</div>
+                <div *ngIf="f.firstname.errors.required">* Name field is required</div>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
             <input type="email" formControlName="document" [(ngModel)]="selectedUser.document" class="" [ngClass]="{ 'is-invalid': submitted && f.document.errors }" required>
             
             <div *ngIf="submitted && f.document.errors" class="invalid-feedback">
-                <div *ngIf="f.document.errors.required">Document field is required</div>
+                <div *ngIf="f.document.errors.required">* Document field is required</div>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
             <input type="username" formControlName="username" [(ngModel)]="selectedUser.username" class="" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" required>
             
             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                <div *ngIf="f.username.errors.required">E-mail field is required</div>
+                <div *ngIf="f.username.errors.required">* E-mail field is required</div>
             </div>
         </div>
 
@@ -39,7 +39,7 @@
             <input type="password" formControlName="password"  [(ngModel)]="selectedUser.password" required class="" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
             
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.required">* Password is required</div>
                 <div *ngIf="f.password.errors.minlength">A senha deve conter 6 digitos</div>
             </div>
         </div>
@@ -55,12 +55,12 @@
             </div>
 
             <div *ngIf="submitted && f.profile.errors" class="invalid-feedback">
-                <div *ngIf="f.profile.errors.required">Profile field is required</div>
+                <div *ngIf="f.profile.errors.required">* Profile field is required</div>
             </div>
         </div>
 
         <!-- Action button -->
-        <div class="row">
+        <div class="row action-container">
             <div class="col">
                 <a [routerLink]="['/user']" class="btn btn-link">Cancel</a>
             </div>

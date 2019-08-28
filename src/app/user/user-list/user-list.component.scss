@@ -121,6 +121,12 @@
                         cursor: pointer;
                     }
 
+                    .edit-action {
+                        a {
+                            text-decoration: none;
+                        }
+                    }
+
                     .trash-action {
                         background-color: $error-color;
                         border-radius: 5px;

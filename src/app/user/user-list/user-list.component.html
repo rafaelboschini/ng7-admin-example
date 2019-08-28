@@ -22,9 +22,9 @@
     <div class="list">
       <div class="header">
         <div class="col-xs-1"></div>
-        <div class="col-xs-3">name</div>
+        <div class="col-xs-4">name</div>
         <div class="col-xs-3">e-mail</div>
-        <div class="col-xs-3 text-center">document</div>
+        <div class="col-xs-2 text-center">document</div>
         <div class="col-xs-1 text-center">
           <span *ngIf="favorites.length>0">({{favorites.length}})</span>
         </div>
@@ -33,12 +33,12 @@
 
       <div class="body">
         <div class="body-row" *ngFor="let user of userData">
-            <div class="text-center col-xs-1">
-              <a routerLink="/user/{{user.id}}" routerLinkActive="active"><i>m</i></a>
+            <div class="text-center col-xs-1 edit-action">
+              <a routerLink="/user/{{user.id}}" routerLinkActive="active"><i>k</i></a>
             </div>
-            <div class="text-left col-xs-3">{{user.firstname}}</div>
+            <div class="text-left col-xs-4">{{user.firstname}}</div>
             <div class="text-left col-xs-3">{{user.username}}</div>
-            <div class="text-center col-xs-3">{{user.document != "" ? user.document : " - "}}</div>
+            <div class="text-center col-xs-2">{{user.document != "" ? user.document : " - "}}</div>
             <div class="text-center col-xs-1 favorite">
               <a (click)="addFavorites(user.id)">              
                 <i *ngIf="isFavorite(user.id) else favoriteFull">u</i>
@@ -57,6 +57,7 @@
             <div class="text-center col-xs-12">No record found</div>
         </div>
       </div>
+
 
     </div>
   </div>

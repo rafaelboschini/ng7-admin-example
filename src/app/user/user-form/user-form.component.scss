@@ -1,0 +1,52 @@
+@import '../../../theme/theme-variables';
+
+.userform-container {
+    
+    .body-wrapper {
+        margin: 15px;
+        max-width: 500px;
+
+        .form-group{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            padding: 10px;
+
+            select,
+            input {
+                width: 100%;
+                margin-top: 10px;
+                padding: 5px;
+                border-radius: 5px;
+                font-size: 18px;
+                border:solid 1px black;
+            }
+
+            .invalid-feedback {
+                color: $error-color;
+                font-size: 12px;
+                margin-top: 10px;
+            }
+        }
+
+        .action-container {
+            display: flex;
+
+            .col {
+                flex: 1 1 auto;
+                text-align: center;
+            }
+
+            .register-action {
+                background-color: $action-button;
+                color: #fff;
+            }
+
+            .btn-link {
+                display: block;
+                color: $content-color;
+                text-decoration: none;
+            }
+        }
+    }
+}
