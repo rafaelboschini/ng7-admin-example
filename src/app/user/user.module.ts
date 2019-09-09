@@ -14,7 +14,7 @@ import { UserFormComponent } from './user-form/user-form.component';
     RouterModule,
     UserRoutingModule,
     FormsModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
   ]
 })
 export class UserModule { }

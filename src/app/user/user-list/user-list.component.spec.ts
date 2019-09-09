@@ -25,7 +25,7 @@ describe('UserListComponent', () => {
           RouterTestingModule.withRoutes(
             [{path: 'user/new', component: UserFormComponent}]
           ),
-          FormsModule,          
+          FormsModule,
           HttpClientModule,
           UserRoutingModule
       ],
@@ -34,7 +34,7 @@ describe('UserListComponent', () => {
     })
     .compileComponents();
 
-    router = TestBed.get(Router); 
+    router = TestBed.get(Router);
     location = TestBed.get(Location);
   }));
 
@@ -54,20 +54,20 @@ describe('UserListComponent', () => {
     fixture.detectChanges();
 
     const compiled = fixture.debugElement.nativeElement;
-   
+
     expect(compiled.querySelector('.user-container .header .header-item').textContent).toBe('m Users ');
-    expect(compiled.querySelector('.user-container .header .search-container input').getAttribute("placeholder")).toBe('Search Here');
+    expect(compiled.querySelector('.user-container .header .search-container input').getAttribute('placeholder')).toBe('Search Here');
     expect(compiled.querySelector('.user-container .header .search-container .search__button i').textContent).toBe('s');
-    
-    component.searchTerm = "";
+
+    component.searchTerm = '';
     await fixture.whenStable();
-    fixture.detectChanges();    
+    fixture.detectChanges();
   });
-  
+
   it('should test no result search', async () => {
     const compiled = fixture.debugElement.nativeElement;
 
-    component.searchTerm = "Eddie Murphy";
+    component.searchTerm = 'Eddie Murphy';
     await fixture.whenStable();
     fixture.detectChanges();
     expect(compiled.querySelector('.user-container .body-wrapper .body .empty-row div').textContent).toBe('No record found');
@@ -76,31 +76,31 @@ describe('UserListComponent', () => {
   it('should test summary grid - plural', async () => {
     const compiled = fixture.debugElement.nativeElement;
 
-    component.searchTerm = "";
+    component.searchTerm = '';
     await fixture.whenStable();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
     expect(compiled.querySelector('.user-container .body-wrapper .list-summary').textContent).toContain('records found');
   });
 
   it('should test summary grid - singular', async () => {
     const compiled = fixture.debugElement.nativeElement;
 
-    component.searchTerm = "Bill";
+    component.searchTerm = 'Bill';
     await fixture.whenStable();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
     expect(compiled.querySelector('.user-container .body-wrapper .list-summary').textContent).toBe('1 record found');
   });
 
   it('should call delete confirmation popup', async () => {
     const compiled = fixture.debugElement.nativeElement;
-    
-    component.searchTerm = "Bill";
+
+    component.searchTerm = 'Bill';
     await fixture.whenStable();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
 
     el = fixture.debugElement.query(By.css('.trash-action')).nativeElement;
     el.click();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
 
     expect(compiled.querySelector('.user-container .modal')).toBeTruthy();
   });
@@ -108,17 +108,17 @@ describe('UserListComponent', () => {
   it('should confirm delete popup', async () => {
     const compiled = fixture.debugElement.nativeElement;
 
-    component.searchTerm = "Bill";
+    component.searchTerm = 'Bill';
     await fixture.whenStable();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
 
     el = fixture.debugElement.query(By.css('.trash-action')).nativeElement;
     el.click();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
 
     el = fixture.debugElement.query(By.css('.success')).nativeElement;
     el.click();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
 
     expect(compiled.querySelector('.user-container .body-wrapper .list-summary').textContent).toBe('0 record found');
   });
@@ -126,17 +126,17 @@ describe('UserListComponent', () => {
   it('should cancel confirmation delete popup', async () => {
     const compiled = fixture.debugElement.nativeElement;
 
-    component.searchTerm = "Bill";
+    component.searchTerm = 'Bill';
     await fixture.whenStable();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
 
     el = fixture.debugElement.query(By.css('.trash-action')).nativeElement;
     el.click();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
 
     el = fixture.debugElement.query(By.css('.error')).nativeElement;
     el.click();
-    fixture.detectChanges(); 
+    fixture.detectChanges();
 
     expect(compiled.querySelector('.user-container .body-wrapper .list-summary').textContent).toBe('1 record found');
   });
@@ -144,9 +144,9 @@ describe('UserListComponent', () => {
   it('should redirect when add button is clicked', async () => {
     el = fixture.debugElement.query(By.css('.add-action')).nativeElement;
     el.click();
-    
+
     await fixture.whenStable();
-    
+
     expect(location.path()).toBe('/user/new');
   });
 });

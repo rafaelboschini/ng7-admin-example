@@ -41,7 +41,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function deleteUser() {
-            //if (!isLoggedIn()) { return unauthorized(); }
+            // if (!isLoggedIn()) { return unauthorized(); }
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
@@ -49,7 +49,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getUserById() {
-            //if (!isLoggedIn()) { return unauthorized(); }
+            // if (!isLoggedIn()) { return unauthorized(); }
 
             const userReturn = users.find((user: { id: number; }) => user.id === idFromUrl());
             return ok(userReturn);

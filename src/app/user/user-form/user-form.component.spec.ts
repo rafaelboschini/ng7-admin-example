@@ -34,7 +34,7 @@ describe('UserFormComponent', () => {
     })
     .compileComponents();
 
-    router = TestBed.get(Router); 
+    router = TestBed.get(Router);
     location = TestBed.get(Location);
   }));
 
@@ -53,8 +53,8 @@ describe('UserFormComponent', () => {
 
     el = fixture.debugElement.query(By.css('.register-action')).nativeElement;
     el.click();
-    fixture.detectChanges(); 
-    
+    fixture.detectChanges();
+
     expect(compiled.querySelector('.userform-container .invalid-feedback')).toBeTruthy();
   });
 
@@ -66,7 +66,7 @@ describe('UserFormComponent', () => {
     component.userForm.controls.document.setValue('000000000000');
     component.userForm.controls.profile.setValue(1);
     component.userForm.controls.password.setValue('whosbad');
-        
+
     el = fixture.debugElement.query(By.css('.register-action')).nativeElement;
     el.click();
 
@@ -75,5 +75,5 @@ describe('UserFormComponent', () => {
 
     expect(location.path()).toBe('');
   });
-  
+
 });
