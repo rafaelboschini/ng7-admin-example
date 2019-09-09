@@ -28,8 +28,7 @@ import { UserModule } from './user/user.module';
     UserModule,
   ],
   providers: [
-    (environment.production ? { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true } : fakeBackendProvider
-    ),
+    (environment.production ? { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true } : fakeBackendProvider),
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-
+import { Location } from '@angular/common';
 import { UserListComponent } from './user-list.component';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,14 +21,16 @@ describe('UserListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
           BrowserModule,
-          UserRoutingModule,
-          FormsModule,
           ReactiveFormsModule,
+          RouterTestingModule.withRoutes(
+            [{path: 'user/new', component: UserFormComponent}]
+          ),
+          FormsModule,          
           HttpClientModule,
-          RouterTestingModule,
+          UserRoutingModule
       ],
-      providers: [fakeBackendProvider],
-      declarations: [ UserListComponent ]
+      providers: [ fakeBackendProvider ],
+      declarations: [ UserListComponent, UserFormComponent ]
     })
     .compileComponents();
 
@@ -139,12 +141,12 @@ describe('UserListComponent', () => {
     expect(compiled.querySelector('.user-container .body-wrapper .list-summary').textContent).toBe('1 record found');
   });
 
-  it('should redirect when add button is clicked', fakeAsync(() => {
-
+  it('should redirect when add button is clicked', async () => {
     el = fixture.debugElement.query(By.css('.add-action')).nativeElement;
     el.click();
-    fixture.detectChanges(); 
-    tick();
-    expect(location.path()).toBe('/home');
-  }));
+    
+    await fixture.whenStable();
+    
+    expect(location.path()).toBe('/user/new');
+  });
 });

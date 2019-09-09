@@ -131,7 +131,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function authenticate() {
-            console.log('chamou authenticate');
             const { username, password } = body;
 
             if (users.length === 0) {
