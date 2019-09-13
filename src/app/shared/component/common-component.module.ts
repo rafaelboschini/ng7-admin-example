@@ -9,6 +9,7 @@ import { ListTableComponent } from './list-table/list-table.component';
   imports: [
     CommonModule,
     FormsModule,
-  ]
+  ],
+  exports: [ListTableComponent]
 })
 export class CommonComponentModule { }

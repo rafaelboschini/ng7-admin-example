@@ -16,6 +16,8 @@
 
   <div class="body-wrapper">
     <div class="list-summary text-right">{{userData.length}} {{userData.length > 1 ? 'records' : 'record' }} found</div>
+    
+    
     <div class="list">
       <div class="header">
         <div class="col-xs-1"></div>
@@ -29,6 +31,7 @@
       </div>
 
       <div class="body">
+        
         <div class="body-row" *ngFor="let user of userData">
             <div class="text-center col-xs-1 edit-action">
               <a routerLink="/user/{{user.id}}" routerLinkActive="active"><i>k</i></a>

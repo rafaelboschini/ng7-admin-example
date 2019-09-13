@@ -15,9 +15,9 @@ import { CommonComponentModule } from '../shared/component/common-component.modu
     CommonModule,
     RouterModule,
     UserRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CommonComponentModule
+    FormsModule,    
+    CommonComponentModule,
+    ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
