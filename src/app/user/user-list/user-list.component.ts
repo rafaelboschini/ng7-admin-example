@@ -12,7 +12,7 @@ import { User } from 'src/app/_models';
 export class UserListComponent implements OnInit {
   users: User[];
   searchTerm = '';
-  favorites: number[] = [];
+
   showModal = false;
   deleteIdUser: number;
 
@@ -44,32 +44,8 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  addFavorites(id: number) {
-    if (!this.favorites.includes(id)) {
-      this.favorites.push(id);
-    } else {
-      this.favorites = this.favorites.filter(data => data !== id);
-    }
-  }
-
-  isFavorite(id: number) {
-    return this.favorites.includes(id);
-  }
-
-  showDeleteModal(id: number) {
-    this.showModal = true;
-    this.deleteIdUser = id;
-  }
-
-  confirmDeleteModal() {
-    this.users = this.users.filter( item => {
-      return item.id !== this.deleteIdUser;
-    });
-
-    this.showModal = false;
-  }
-
-  searchByTerm(term:any){
+  searchByTerm(term = '') {
     this.searchTerm = term;
   }
+
 }

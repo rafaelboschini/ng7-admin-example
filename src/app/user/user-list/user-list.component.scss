@@ -51,98 +51,18 @@
                 margin-right: 5px;
             }
 
-
         }
     }
 
     .body-wrapper {
         display: flex;
         flex-direction: column;
-        padding:20px;        
+        padding: 20px;
 
-        .list {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            box-shadow: -1px 2px 3px 0px rgba(50, 50, 50, 0.23);
-
-            &-summary{
-                padding-bottom: 5px;
-                color: $placeholder-color;
-                font-size: 12px;
-            }
-
-            .header {
-                max-height: 40px;
-                line-height: 40px;
-                
-                > div {
-                    flex: 1 1 auto;
-                    text-transform: capitalize;
-                }
-            }
-
-            .body {
-                &-row {
-                    height: 40px;
-                    line-height: 40px;
-                    display: flex;
-                    flex-direction: row;
-
-                    &:nth-child(odd){
-                        background-color: #ececec;
-                    }
-                    
-                    > div {
-                        flex: 1 1 auto;
-                    }
-
-                    .favorite {
-                        color: $highlight;
-                        cursor: pointer;
-                    }
-
-                    .edit-action {
-                        text-align: center;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        
-                        a {
-                            display: flex;
-                            text-decoration: none;
-                            background-color: $action-button;
-                            border-radius: 5px;
-                            border: 0;
-                            width: 30px;
-                            height: 30px;
-                            color: #fff;
-                            align-items: center;
-                            justify-content: center;
-                            cursor: pointer;
-                        }
-                    }
-
-                    .trash-action {
-                        background-color: $error-color;
-                        border-radius: 5px;
-                        border: 0;
-                        width: 30px;
-                        height: 30px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-
-                        i {    
-                            font-size: 18px;
-                            color: #fff;
-
-                        }
-                        
-                    }
-                }
-            }
+        &__summary {
+            padding-bottom: 5px;
+            color: $placeholder-color;
+            font-size: 12px;
         }
 
     }

@@ -1,0 +1,58 @@
+<div class="user-table">
+    <div class="user-table__header">
+      <div class="col-xs-1" *ngIf="showEditButton"></div>
+      <div class="col-xs-4">name</div>
+      <div class="col-xs-3">e-mail</div>
+      <div class="col-xs-2 text-center">document</div>
+      <div class="col-xs-1 text-center" *ngIf="showFavoriteButton">
+          <span>({{_favorites.length}})</span>
+      </div>
+      <div class="col-xs-1" *ngIf="showDeleteButton"></div>
+    </div>
+    
+    <div class="body">
+        <div class="body-row" *ngFor="let user of dataset">
+          <div class="text-center col-xs-1 edit-action" *ngIf="showEditButton">
+            <a routerLink="/user/{{user.id}}" routerLinkActive="active" title="Edit user data"><i>k</i></a>
+          </div>
+          <div class="text-left col-xs-4">{{user.firstname}}</div>
+          <div class="text-left col-xs-3">{{user.username}}</div>
+          <div class="text-center col-xs-2">{{user.document != "" ? user.document : " - "}}</div>
+          <div class="text-center col-xs-1 favorite" *ngIf="showFavoriteButton">
+            <a (click)="addFavorites(user.id)" title="add to favorites">              
+              <i *ngIf="isFavorite(user.id) else favoriteFull">u</i>
+              <ng-template #favoriteFull>
+                <i>t</i>
+              </ng-template>
+            </a>
+          </div>
+          <div class="text-center col-xs-1 content-middle" *ngIf="showDeleteButton">
+            <div class="trash-action" (click)="showDeleteModal(user.id)" title="Delete this user">
+              <i>l</i>
+            </div>
+          </div>
+    </div>
+    <div class="body-row empty-row" *ngIf="dataset.length == 0" title="No data found.">
+      <div class="text-center col-xs-12">No record found</div>
+    </div>
+</div>
+
+<div class="modal" *ngIf="_showModal">
+    <div class="modal-background"></div>
+    <div class="modal-box">
+      <div class="modal-box__icon">
+        <i>l</i>
+      </div>
+      <div class="modal-box__title">
+          Do you really want to delete this user?
+      </div>
+      <div class="modal-box__choose">
+        <div>
+          <a class="success" (click)="confirmDeleteModal()" title="Yes, i'm sure.">YES</a>
+        </div>
+        <div>
+          <a class="error" (click)="_showModal=false" title="No, close this confirmation, please.">NOPE</a>
+        </div>
+      </div>      
+    </div>
+  </div>

@@ -1,87 +1,21 @@
 <div class="user-container">
   <!-- Start header of user page -->
   <div class="header">
-    
     <div class="header-item">
         <i>m</i> Users
     </div>
-
-    <!-- Search area -->
     <div class="header-item">
       <app-user-search (termChange)="searchByTerm($event)"></app-user-search>
     </div>
-
   </div>
   <!-- End of the header -->
 
+
   <div class="body-wrapper">
-    <div class="list-summary text-right">{{userData.length}} {{userData.length > 1 ? 'records' : 'record' }} found</div>
-    
-    
-    <div class="list">
-      <div class="header">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-4">name</div>
-        <div class="col-xs-3">e-mail</div>
-        <div class="col-xs-2 text-center">document</div>
-        <div class="col-xs-1 text-center">
-          <span *ngIf="favorites.length>0">({{favorites.length}})</span>
-        </div>
-        <div class="col-xs-1"></div>
-      </div>
-
-      <div class="body">
-        
-        <div class="body-row" *ngFor="let user of userData">
-            <div class="text-center col-xs-1 edit-action">
-              <a routerLink="/user/{{user.id}}" routerLinkActive="active"><i>k</i></a>
-            </div>
-            <div class="text-left col-xs-4">{{user.firstname}}</div>
-            <div class="text-left col-xs-3">{{user.username}}</div>
-            <div class="text-center col-xs-2">{{user.document != "" ? user.document : " - "}}</div>
-            <div class="text-center col-xs-1 favorite">
-              <a (click)="addFavorites(user.id)">              
-                <i *ngIf="isFavorite(user.id) else favoriteFull">u</i>
-                <ng-template #favoriteFull>
-                  <i>t</i>
-                </ng-template>
-              </a>
-            </div>
-            <div class="text-center col-xs-1 content-middle">
-              <div class="trash-action" (click)="showDeleteModal(user.id)">
-                <i>l</i>
-              </div>
-            </div>
-        </div>
-        <div class="body-row empty-row" *ngIf="userData.length == 0">
-            <div class="text-center col-xs-12">No record found</div>
-        </div>
-      </div>
-
-
-    </div>
+    <div class="body-wrapper__summary text-right">{{userData.length}} {{userData.length > 1 ? 'records' : 'record' }} found</div>
+    <app-user-table [dataset]="userData"></app-user-table>
   </div>
 
   <a routerLink="/user/new" routerLinkActive="active" class="add-action content-middle"><i>q</i></a>
 
-  <div class="modal" *ngIf="showModal">
-    <div class="modal-background"></div>
-    <div class="modal-box">
-      <div class="modal-box__icon">
-        <i>l</i>
-      </div>
-      <div class="modal-box__title">
-          Do you really want to delete this user?
-      </div>
-      <div class="modal-box__choose">
-        <div>
-          <a class="success" (click)="confirmDeleteModal()">SIM</a>
-        </div>
-        <div>
-          <a class="error" (click)="showModal=false">NÃO</a>
-        </div>
-      </div>
-      
-    </div>
-  </div>
 </div>
