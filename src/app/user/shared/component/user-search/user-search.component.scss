@@ -1,0 +1,28 @@
+.search {
+
+    &-container {
+        background-color: #fff;
+        display: flex;
+        padding: 0 18px;
+        border-radius: 28px;
+        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+        width: 100%;
+        max-width: 480px;
+        font-size: 30px;
+        line-height: 45px;
+
+        input {
+            width: 100%;
+            border:0;
+            font-size: 50%;
+            font-weight: bold;
+            height: 48px;
+            line-height: 48px;
+            color: rgba(0,0,0,.87);
+
+            &::placeholder{
+                font-weight: normal;
+            }
+        }
+    }
+}

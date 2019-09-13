@@ -68,4 +68,8 @@ export class UserListComponent implements OnInit {
 
     this.showModal = false;
   }
+
+  searchByTerm(term:any){
+    console.log('term', term);
+  }
 }

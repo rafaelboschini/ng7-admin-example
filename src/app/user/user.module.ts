@@ -6,9 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user.routing.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { UserSearchComponent } from './shared/component/user-search/user-search.component';
 
 @NgModule({
-  declarations: [UserListComponent, UserFormComponent],
+  declarations: [ UserListComponent, UserFormComponent, UserSearchComponent ],
   imports: [
     CommonModule,
     RouterModule,

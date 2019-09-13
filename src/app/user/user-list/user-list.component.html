@@ -8,10 +8,7 @@
 
     <!-- Search area -->
     <div class="header-item">
-      <div class="search-container">
-        <div class="search__button"><i>s</i></div>
-        <input type="text" placeholder="Search Here" [(ngModel)]="searchTerm">        
-      </div>
+      <app-user-search (termChange)="searchByTerm($event)"></app-user-search>
     </div>
 
   </div>
