@@ -70,6 +70,6 @@ export class UserListComponent implements OnInit {
   }
 
   searchByTerm(term:any){
-    console.log('term', term);
+    this.searchTerm = term;
   }
 }
