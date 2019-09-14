@@ -9,6 +9,8 @@ import { fakeBackendProvider } from 'src/app/_helpers/fake-backend';
 import { UserListComponent } from '../user-list/user-list.component';
 import { UserRoutingModule } from '../user.routing.module';
 import { Router } from '@angular/router';
+import { UserSearchComponent } from '../shared/component/user-search/user-search.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
@@ -30,7 +32,8 @@ describe('UserFormComponent', () => {
           ),
       ],
       providers: [fakeBackendProvider],
-      declarations: [ UserFormComponent, UserListComponent ]
+      declarations: [ UserFormComponent, UserListComponent, UserSearchComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
 

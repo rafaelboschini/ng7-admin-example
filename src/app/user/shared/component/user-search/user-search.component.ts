@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./user-search.component.scss']
 })
 export class UserSearchComponent {
-  @Output() termChange = new EventEmitter();
+  @Output() termChange:EventEmitter<string> = new EventEmitter();
   _searchTerm = '';
 
   constructor() {}

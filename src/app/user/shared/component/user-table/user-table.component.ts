@@ -7,7 +7,7 @@ import { User } from 'src/app/_models';
   styleUrls: ['./user-table.component.scss']
 })
 export class UserTableComponent {
-  @Input() dataset: User[];
+  @Input() dataset: User[] = [];
   @Input() showDeleteButton = true;
   @Input() showEditButton = true;
   @Input() showFavoriteButton = true;

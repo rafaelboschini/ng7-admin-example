@@ -9,6 +9,9 @@ import { fakeBackendProvider } from 'src/app/_helpers/fake-backend';
 import { Router } from '@angular/router';
 import { UserRoutingModule } from '../user.routing.module';
 import { UserFormComponent } from '../user-form/user-form.component';
+import { UserSearchComponent } from '../shared/component/user-search/user-search.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { UserTableComponent } from '../shared/component/user-table/user-table.component';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
@@ -30,7 +33,8 @@ describe('UserListComponent', () => {
           UserRoutingModule
       ],
       providers: [ fakeBackendProvider ],
-      declarations: [ UserListComponent, UserFormComponent ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [ UserListComponent, UserFormComponent, UserSearchComponent, UserTableComponent ]
     })
     .compileComponents();
 
@@ -79,7 +83,7 @@ describe('UserListComponent', () => {
     component.searchTerm = '';
     await fixture.whenStable();
     fixture.detectChanges();
-    expect(compiled.querySelector('.user-container .body-wrapper .list-summary').textContent).toContain('records found');
+    expect(compiled.querySelector('.user-container .body-wrapper .body-wrapper__summary').textContent).toContain('records found');
   });
 
   it('should test summary grid - singular', async () => {
@@ -88,7 +92,7 @@ describe('UserListComponent', () => {
     component.searchTerm = 'Bill';
     await fixture.whenStable();
     fixture.detectChanges();
-    expect(compiled.querySelector('.user-container .body-wrapper .list-summary').textContent).toBe('1 record found');
+    expect(compiled.querySelector('.user-container .body-wrapper .body-wrapper__summary').textContent).toBe('1 record found');
   });
 
   it('should call delete confirmation popup', async () => {
@@ -105,6 +109,29 @@ describe('UserListComponent', () => {
     expect(compiled.querySelector('.user-container .modal')).toBeTruthy();
   });
 
+
+  it('should cancel confirmation delete popup', async () => {
+    const compiled = fixture.debugElement.nativeElement;
+    fixture.detectChanges();
+
+    component.searchTerm = 'Bill';
+    
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    el = fixture.debugElement.query(By.css('.trash-action')).nativeElement;
+    el.click();
+    fixture.detectChanges();
+
+    el = fixture.debugElement.query(By.css('.error')).nativeElement;
+    el.click();
+    
+    fixture.detectChanges();
+
+    expect(compiled.querySelector('.user-container .body-wrapper .body-wrapper__summary').textContent).toBe('1 record found');
+  });
+
+  
   it('should confirm delete popup', async () => {
     const compiled = fixture.debugElement.nativeElement;
 
@@ -120,25 +147,7 @@ describe('UserListComponent', () => {
     el.click();
     fixture.detectChanges();
 
-    expect(compiled.querySelector('.user-container .body-wrapper .list-summary').textContent).toBe('0 record found');
-  });
-
-  it('should cancel confirmation delete popup', async () => {
-    const compiled = fixture.debugElement.nativeElement;
-
-    component.searchTerm = 'Bill';
-    await fixture.whenStable();
-    fixture.detectChanges();
-
-    el = fixture.debugElement.query(By.css('.trash-action')).nativeElement;
-    el.click();
-    fixture.detectChanges();
-
-    el = fixture.debugElement.query(By.css('.error')).nativeElement;
-    el.click();
-    fixture.detectChanges();
-
-    expect(compiled.querySelector('.user-container .body-wrapper .list-summary').textContent).toBe('1 record found');
+    expect(compiled.querySelector('.user-container .body-wrapper .body-wrapper__summary').textContent).toBe('1 record found');
   });
 
   it('should redirect when add button is clicked', async () => {
