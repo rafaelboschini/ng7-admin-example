@@ -14,4 +14,19 @@ describe('UserService', () => {
     const service: UserService = TestBed.get(UserService);
     expect(service).toBeTruthy();
   });
+
+  it('should return user by id', async () => {
+    const service: UserService = TestBed.get(UserService);
+    
+    const list = service.getAll().subscribe(data => {
+      expect(data.length).toBeGreaterThan(2);
+
+      const user = service.getById(data[0].id);
+
+      console.log('list user', user);
+    });
+
+    //
+    
+  });
 });

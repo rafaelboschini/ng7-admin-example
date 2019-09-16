@@ -11,6 +11,7 @@ import { UserRoutingModule } from '../user.routing.module';
 import { Router } from '@angular/router';
 import { UserSearchComponent } from '../shared/component/user-search/user-search.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { UserModule } from '../user.module';
 
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
@@ -28,11 +29,13 @@ describe('UserFormComponent', () => {
           HttpClientModule,
           UserRoutingModule,
           RouterTestingModule.withRoutes(
-            [{path: 'user/', component: UserListComponent}]
+            [
+              {path: 'user/', component: UserListComponent}
+            ],
           ),
+          UserModule
       ],
       providers: [fakeBackendProvider],
-      declarations: [ UserFormComponent, UserListComponent, UserSearchComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
@@ -76,7 +79,7 @@ describe('UserFormComponent', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    expect(location.path()).toBe('');
+    expect(router.url).toBe('/');
   });
 
 });

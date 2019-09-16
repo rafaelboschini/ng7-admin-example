@@ -12,6 +12,7 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { UserSearchComponent } from '../shared/component/user-search/user-search.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { UserTableComponent } from '../shared/component/user-table/user-table.component';
+import { UserModule } from '../user.module';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
@@ -30,11 +31,11 @@ describe('UserListComponent', () => {
           ),
           FormsModule,
           HttpClientModule,
-          UserRoutingModule
+          UserRoutingModule,
+          UserModule
       ],
       providers: [ fakeBackendProvider ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ UserListComponent, UserFormComponent, UserSearchComponent, UserTableComponent ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
 
