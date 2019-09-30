@@ -21,14 +21,21 @@ Angular | Karma | Jasmine
  - All features coverage with tests. Karma Jasmine
  - tslint enabled
 
+![Tests List](https://github.com/rafaelboschini/ng7-admin-example/blob/master/preview-images/preview.png?raw=true)
+
 ## Development server
 
 Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-
 ## Running unit tests
 
 Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+See all the tests covered in this project.
+its a good example to study and understand how tests works in angular 7 project.
+
+![Tests List](https://github.com/rafaelboschini/ng7-admin-example/blob/master/preview-images/tests.png?raw=true)
+
 
 ## Running lint
 
